@@ -18,9 +18,7 @@
           ></card-front>
         </template>
         <template v-slot:cardBack>
-          <div class="cardBack">
-            <span>{{ chosenCard.description }}</span>
-          </div>
+          <card-back :description="chosenCard.description"></card-back>
         </template>
       </card-flip>
     </div>
@@ -29,12 +27,14 @@
 
 <script>
 import CardFront from "../components/CardFront";
+import CardBack from "../components/CardBack";
 import CardFlip from "../components/CardFlip";
 
 export default {
   name: "home",
   components: {
     CardFront,
+    CardBack,
     CardFlip
   },
   methods: {
@@ -100,17 +100,6 @@ export default {
   @include desktop {
     padding: 0 175px;
     grid-template-columns: repeat(3, 2fr);
-  }
-
-  .cardBack {
-    background-color: gray;
-    color: #fff;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
   }
 }
 </style>
