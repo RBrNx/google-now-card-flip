@@ -29,7 +29,7 @@ export default {
   methods: {
     closeCardClone() {
       this.$el
-        .querySelector("#cardClone")
+        .querySelector("#cardFlip")
         .addEventListener("transitionend", this.onTransitionEnd);
       this.cardTransform = "rotateY(0deg)";
       document.body.classList.remove("overlayShown");
@@ -45,8 +45,6 @@ export default {
         left: `${viewportOffset.left}px`,
         top: `${viewportOffset.top}px`
       };
-
-      this.$emit("cardCloneClosed");
     },
     onTransitionEnd(e) {
       if (e.propertyName === "transform" && e.target.id === "cardFlip") {
@@ -57,15 +55,11 @@ export default {
       this.$el.removeEventListener("transitionend", this.onTransitionEnd);
       this.clonedElement.style.opacity = 1;
       this.$el.style.opacity = 0;
-
-      const currPath = this.$route.path;
-      const id = this.$route.params.id;
-      const newPath = currPath.replace(`/${id}`, "");
-      this.$router.replace({ path: newPath });
+      this.$emit("cardClosed");
     }
   },
   mounted() {
-    const cardElement = document.getElementById(this.$route.params.id);
+    const cardElement = document.getElementById(this.cardId);
     const viewportOffset = cardElement.getBoundingClientRect();
     this.clonedElement = cardElement;
 
@@ -85,22 +79,22 @@ export default {
         window.innerWidth / 2;
       const transform = isOverHalfway ? "rotateY(-180deg)" : "rotateY(180deg)";
       this.cardTransform = transform;
-      this.cardClass = "shown" + (this.fullscreen ? " fullscreen" : "");
+      this.cardClass = "shown";
       document.body.classList.add("overlayShown");
-      this.$emit("cardCloneOpened");
+      this.$emit("cardOpened");
     }, 150);
   }
 };
 </script>
 
 <style lang="scss">
-@import "../assets/global.scss";
+@import "../global.scss";
 
 .scrollContainer {
   height: 100%;
 }
 
-#cardCloneOverlay {
+#cardFlipOverlay {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -181,7 +175,7 @@ export default {
 #cardBack {
   z-index: 101;
   transform: rotateY(180deg);
-  background: lighten($primaryGrey, 5%);
+  background: grey;
   overflow: hidden;
   border-radius: 5px;
 
