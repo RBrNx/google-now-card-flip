@@ -2,7 +2,9 @@
 
 This is the repository for a Blog I wrote about replicating the Google Now Card Flip in Vue.js. It is intended to be a minimalist implementation to allow easy customization by the anyone who follows it.
 
+![Google Now Card Flip](https://thumbs.gfycat.com/WatchfulSimplisticAfricanwildcat-size_restricted.gif)
 
+![Vue Card Flip](https://thumbs.gfycat.com/UnequaledComplicatedCivet-size_restricted.gif)
 
 ## Project setup
 ```
