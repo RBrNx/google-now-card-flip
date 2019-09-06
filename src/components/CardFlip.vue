@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="cardFlipOverlay" :class="cardClass" @click="closeCardClone"></div>
+    <div id="cardFlipOverlay" :class="cardClass" @click="closeCard"></div>
     <div id="cardFlip" :style="customStyle" :class="cardClass">
       <div id="flipper" :style="{ transform: cardTransform }">
         <div id="cardFront">
@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    closeCardClone() {
+    closeCard() {
       this.$el
         .querySelector("#cardFlip")
         .addEventListener("transitionend", this.onTransitionEnd);
