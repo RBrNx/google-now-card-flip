@@ -4,10 +4,10 @@
     <div id="cardFlip" :style="customStyle" :class="cardClass">
       <div id="flipper" :style="{ transform: cardTransform }">
         <div id="cardFront">
-          <component :is="cardFrontComponent" v-bind="{ itemData }"></component>
+          <slot name="cardFront"></slot>
         </div>
         <div id="cardBack">
-          <component :is="cardBackComponent"></component>
+          <slot name="cardBack"></slot>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "CardClone",
-  props: ["cardFrontComponent", "cardBackComponent"],
+  props: ["cardId"],
   data() {
     return {
       cardTransform: "rotateY(0deg)",
