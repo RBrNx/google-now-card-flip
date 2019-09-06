@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "CardClone",
+  name: "CardFront",
   props: ["backgroundColor", "colorName"]
 };
 </script>
